@@ -1,0 +1,22 @@
+<div class="subtitle maincolor3">
+  <!--  autor <%#= link_to story.author.login, headlines_story_path(story), {:class => "maincolor4"} %><br />-->
+    <% if story.workflow_state == "draft" %>
+      fecha de creación <span class="maincolor4"> 
+      <%= fecha(story.created_at) %>
+    <% else %>
+      fecha <span class="maincolor4"> 
+      <%= fecha(story.publish_date) %>
+    <% end %>
+  </span><br /> 
+  <%= story.comments.size %> comentarios<br />
+  etiquetas (tags): 
+  <%- if !story.tags.blank? -%>
+    <%- for tag in story.tags -%>
+     <span class="maincolor4">
+       <%= link_to tag.name, by_tag_headlines_stories_path(:tag_name => tag.name), :class => "maincolor4" %>
+     </span>
+    <%- end -%>
+    <%- else -%> 
+      No hay etiquetas (tags)
+  <%- end -%> 
+</div>

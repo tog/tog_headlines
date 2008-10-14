@@ -1,0 +1,29 @@
+<% include_javascript "fckeditor/fckeditor" %>
+
+	
+<fieldset id="main-info">
+  <legend>Main info</legend>
+  <label>Title <%=f.text_field :title, :size => nil -%></label>
+</fieldset>
+
+<fieldset id="meta-info">
+  <legend>Meta info</legend>
+  <label>Tags <%= f.text_field :tag_list, {:size => nil} %></label>
+
+  <div class="group">
+	<% if @story.workflow_state != "draft" %>
+	  <label>Publish date
+	    <%= f.date_select :publish_date, {:order => [:day, :month, :year]} %>
+	  </label>
+	  <label>Archive date
+	    <%= f.date_select :archive_date, {:order => [:day, :month, :year], :default => 1.month.from_now }  %>
+	  </label>
+	<% end %>
+	</div>
+</fieldset>
+
+<fieldset id="story-content">
+  <legend>Content</legend>
+  <label>Summary <%= fckeditor_textarea( "story", "summary", :height => '250') %></label>
+  <label>Body <%= fckeditor_textarea( "story", "body", :height => '450') %></label>
+</fieldset>

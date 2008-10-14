@@ -1,0 +1,26 @@
+<div id="news_detail" class="main_wrap">
+    <div class="module_title">Noticia</div>
+    <div class="main_content">
+      <% if flash[:notice] -%>
+              <div class="notice"><%= flash[:notice] %><br/><br/></div>
+      <% end -%>
+      <% if flash[:error] -%>
+              <div class="error"><%= flash[:error] %><br/><br/></div>
+      <% end -%>	
+        <div class="detail_1">
+            <%= render :partial => "headlines/share/actions", :locals => {:story => @story} %>
+            <div class="title maincolor2"> <%= @story.title %> </div>
+            <%= render :partial => "headlines/share/story_info", :locals => {:story => @story} %>
+            <div class="text">
+                <%= textilize_without_paragraph @story.body %>
+            </div>    
+        </div>  
+
+        <br />
+        <br />
+        <% unless @story.workflow_state == "draft" %>
+          <%= render :partial => "comment_view" %>
+        <% end %>
+</div> <!-- ./main_content -->
+</div> <!-- .news_detail -->
+

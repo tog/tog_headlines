@@ -1,0 +1,9 @@
+<%= error_messages_for :story %>
+<% form_for :story, :url => {:action => :update_approve}, :html => {:method => :post} do |f| -%>
+  <h2>Approve and select Publish Date</h2>
+  <fieldset>
+    <%= render :partial => 'form_date', :locals => { :f => f } %>
+    <%= submit_tag 'Save' %>
+  </fieldset>
+<% end -%>
+

@@ -1,0 +1,26 @@
+<div id="news" class="main_wrap" >
+            
+  <div class="title1 maincolor4 fontbigger">Noticias</div>       
+
+  <br />
+  <% if !@stories.blank? %>
+    <% for story in @stories %>
+      <ul class="mainlist">
+          <li>
+              <div class="main_info clearfix">
+                  <%= render :partial => "headlines/share/actions", :locals => {:story => story} %>
+                  <div class="title"> <%= link_to story.title, headlines_story_path(story), :class => "maincolor2"  %> </div>
+              <!--/div-->
+              <%= render :partial => "headlines/share/story_info", :locals => {:story => story} %>
+              <br />
+              </div>
+              <div class="text">
+                <%= story.summary %>
+              </div>
+          </li>
+      </ul>
+    <% end %>
+    <% else %>
+       No hay noticias.
+    <% end %>
+</div> <!-- #news -->     

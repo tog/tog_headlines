@@ -1,0 +1,11 @@
+<h2> <%= @story.title %> </h2>
+<fieldset>
+<strong> Summary </strong>
+<%= @story.summary %> <br />
+<strong> Body </strong>
+<%= @story.body %> <br />
+<strong> Publish Date </strong>
+<%= fecha(@story.publish_date) %> <br />
+<strong> Archive Date </strong>
+<%= fecha(@story.archive_date) %>
+</fieldset>

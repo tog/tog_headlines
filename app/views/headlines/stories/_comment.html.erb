@@ -1,0 +1,21 @@
+  <li class="clearfix">
+  <div class="main_info clearfix">
+    <div class="admin_options">
+      <% if admin? %>
+        <%= link_to image_tag("../img/ico/delete.gif"), comment_remove_path(comment), {:class => "button"} -%>
+        <%= link_to("Aprobar", comment_approve_path(comment), {:class => "button"}) unless comment.approved %>
+      <% elsif logged_in?  %>
+        <%= abuse_report_link(comment) %>
+      <% end %>
+    </div> 
+    <!--<div class="image"><img class="image" src="garbage/foto44x44.jpg" alt="Foto de Segis Menendez" /></div>-->
+    <div class="subtitle maincolor3">
+      Comentarios de: <%= link_to comment.user.login, headlines_story_path(@story) , :class => "maincolor4" %><br />
+      Fecha: <%= fecha(comment.created_at) %>
+    </div>
+  </div>
+    <%= comment.title %>
+  <div class="text">
+    <%= comment.comment %>
+  </div>
+</li>

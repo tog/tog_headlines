@@ -1,0 +1,43 @@
+<div id="news">
+            
+  <div class="title1 maincolor4"><span class="fontbigger">Noticias en borrador</span>
+    <% if admin? %>
+      <div class="titletab"><div class="titletab_content">
+        <%= link_to 'Nueva Noticia', new_admin_headlines_story_path, :class => "link_add maincolor4" %>
+      </div></div>
+    <% end %>
+  </div>       
+  
+  
+  <br />
+  <% if !@stories.blank? %>
+    <% for story in @stories %>
+               
+      <ul class="mainlist">
+          <li>
+              <div class="main_info clearfix">
+                  <div class="side_info">
+                    <% if admin? %><!--o revisor si se le ha asignado esta noticia, o autor si está en workflow_state=draft -->
+                      <div class="admin_options">
+                        <%= link_to "Aprobar", edit_approve_admin_headlines_story_path(story), :method => :post %>
+                        <%= link_to image_tag("../img/ico/edit.gif"), edit_admin_headlines_story_path(story), :method => :get  %>
+                        <%= link_to image_tag("../img/ico/delete.gif"), admin_headlines_story_path(story), :method => :delete, :confirm => "¿Seguro que quiere borrar?"  %>
+                      </div>         
+                    <% end %>
+                  </div>
+                  <div class="title"> <%= link_to story.title, headlines_story_path(story), :class => "maincolor2"  %> </div>
+                  <div class="subtitle maincolor3">
+                      fecha de creación<span class="maincolor4"> <%= fecha(story.created_at) %> </span><br />
+                  </div>
+              </div>
+              <div class="text">
+                <%= story.summary %>  
+              </div>
+              <%= link_to "Ver más", headlines_story_path(story), :class => "maincolor2"  %>
+          </li>
+      </ul>
+    <% end %>
+    <% else %>
+       No hay noticias en estado borrador.
+    <% end %>
+</div> <!-- #news -->     

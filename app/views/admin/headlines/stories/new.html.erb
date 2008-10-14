@@ -1,0 +1,10 @@
+<%= error_messages_for :story %>
+<% include_javascript "fckeditor/fckeditor" %>
+<% form_for :story, :url => {:action => :create},  :html => {:id => "settings"} do |f| -%>
+<h2>Create Story</h2>
+<fieldset>
+  <%= render :partial => 'form_new', :locals => { :f => f } %>
+  <%= submit_tag 'Create', {:accesskey => "s"} %>
+</fieldset>
+<% end -%>
+

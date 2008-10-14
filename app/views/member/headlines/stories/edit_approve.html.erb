@@ -1,0 +1,34 @@
+<div class="main_wrap">
+  <div class="module_title">Establecer Fechas</div>
+  <div class="main_content">
+    <% unless logged_in? && current_user.active? %>
+    
+      TODO: mensaje de usuario no activo
+   
+    <% else %>
+      <% form_for :story, :url => {:action => :update_approve}, :html => {:method => :post} do |f| -%>
+         
+        <p>
+          <label for="date"><strong>Fecha de publicación</strong></label>
+          <%= f.date_select :publish_date, {:order => [:day, :month, :year], :class => "wide"} %>
+        </p>
+
+
+        <p>
+          <label for="date"><strong>Fecha de retirada</strong></label>
+          <%= f.date_select :archive_date, {:order => [:day, :month, :year], :default => 1.month.from_now, :class => "wide"} %>
+        </p>
+
+          <div class="form_actions center">
+            <br />
+            <%= submit_tag 'Guardar', {:class=>"button1", :style => "font-size: 1em;"} %>
+          </div>
+        <% end -%>
+      <% end -%>
+
+     </form>
+
+
+   </div> <!-- ./main_content -->
+</div> <!-- /.main_wrap -->
+
