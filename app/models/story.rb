@@ -2,6 +2,7 @@ class Story < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
+  seo_urls
 
   belongs_to :author,   :class_name => "User",           :foreign_key => "author_id"  
   belongs_to :editor,   :class_name => "User",           :foreign_key => "editor_id"  
