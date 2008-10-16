@@ -1,0 +1,16 @@
+# {{xxx}}
+en-US:
+  tog_headlines:
+    plugin_title: News
+
+    site:
+      no_news: No news yet
+      item: New
+    member:
+      key2: key2
+    admin:
+      story_created: Story has been created successfully
+      story_deleted: Story has been deleted successfully
+      story_updated: Story has been updated successfully
+    mailer: 
+      key4: key4

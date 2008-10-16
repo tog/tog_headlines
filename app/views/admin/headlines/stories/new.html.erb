@@ -3,7 +3,7 @@
 <% form_for :story, :url => {:action => :create},  :html => {:id => "settings"} do |f| -%>
 <h2>Create Story</h2>
 <fieldset>
-  <%= render :partial => 'form_new', :locals => { :f => f } %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
   <%= submit_tag 'Create', {:accesskey => "s"} %>
 </fieldset>
 <% end -%>

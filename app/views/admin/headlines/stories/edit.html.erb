@@ -2,7 +2,7 @@
 <% form_for :story, :url => {:action => :update}, :html => {:method => :put, :id => "settings"} do |f| -%>
   <h2>Update Story</h2>
   <fieldset>
-    <%= render :partial => 'form_edit', :locals => { :f => f } %>
+    <%= render :partial => 'form', :locals => { :f => f } %>
     <%= submit_tag 'Save' %>
   </fieldset>
 <% end -%>

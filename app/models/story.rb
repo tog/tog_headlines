@@ -2,11 +2,12 @@ class Story < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
-#  acts_as_smiled
 
-  belongs_to :author,    :class_name => "User",           :foreign_key => "author_id"  
-  belongs_to :editor,    :class_name => "User",           :foreign_key => "editor_id"  
-  belongs_to :owner,    :polymorphic => true
+  belongs_to :author,   :class_name => "User",           :foreign_key => "author_id"  
+  belongs_to :editor,   :class_name => "User",           :foreign_key => "editor_id"  
+  belongs_to :owner,   :class_name => "User",           :foreign_key => "author_id"  
+
+#  belongs_to :owner,    :polymorphic => true
   has_many :story_groups
   has_many :groups, :through => :story_groups
 

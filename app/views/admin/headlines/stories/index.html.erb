@@ -1,13 +1,6 @@
 <h2>Stories
   <%= link_to "Create", new_admin_headlines_story_path, :class => "create button add" %>
 </h2>
-<h3>
-  <center>
-    <%= link_to "Stories", admin_headlines_stories_path %>&nbsp;&nbsp;
-    <%= link_to "Draft Stories", draft_admin_headlines_stories_path %>&nbsp;&nbsp;
-    <%= link_to "Archived Stories", archived_admin_headlines_stories_path %>
-  </center>
-</h3>
 <table>
   <thead>
     <tr>
@@ -25,7 +18,7 @@
         <tr>
           <td><%= link_to story.title, edit_admin_headlines_story_path(story), :method => :get  %></td>
           <td><%= story.summary %></td>
-          <td><%= link_to story.editor.login, admin_user_edit_url(story.editor), {:class => "admin", :title => "Edit user"} -%></td>
+          <td><%= link_to story.editor.login, edit_admin_user_url(story.editor), {:class => "admin", :title => "Edit user"} -%></td>
           <td><%= fecha(story.created_at) %></td>
           <td><%= story.publish_state %><br /><%=fecha(story.publish_date) %> - <%= fecha(story.archive_date) %> </td>
           <td>

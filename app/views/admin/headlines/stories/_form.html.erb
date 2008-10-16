@@ -9,10 +9,16 @@
 <fieldset id="meta-info">
   <legend>Meta info</legend>
   <label>Tags <%= f.text_field :tag_list, {:size => nil} %></label>
+
   <div class="group">
-	  <label>Groups assignment
-      <%= select ("story","owner_id", current_user.groups.collect {|g| [g.name, g.id]}) %>
+	<% if @story && @story.workflow_state != "draft" %>
+	  <label>Publish date
+	    <%= f.date_select :publish_date, {:order => [:day, :month, :year]} %>
 	  </label>
+	  <label>Archive date
+	    <%= f.date_select :archive_date, {:order => [:day, :month, :year], :default => 1.month.from_now }  %>
+	  </label>
+	<% end %>
 	</div>
 </fieldset>
 

@@ -4,11 +4,6 @@ class Headlines::StoriesController < ApplicationController
 
   def show
     @story = Headlines::Story.find(params[:id])
-#   if admin?
-#     @comments = @story.comments
-#   else
-      @comments = @story.active_comments
-#    end
   end
   
 

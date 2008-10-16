@@ -1,14 +1,6 @@
-
-<h2>Draft Stories
-  <%= link_to "Create", new_meta_headlines_story_path, :class => "create button" %>
+<h2>Draft stories
+  <%= link_to "Create", new_admin_headlines_story_path, :class => "create button add" %>
 </h2>
-<h3>
-  <center>
-    <%= link_to "Stories", meta_headlines_stories_path %>&nbsp;&nbsp;
-    <%= link_to "Draft Stories", draft_meta_headlines_stories_path %>&nbsp;&nbsp;
-    <%= link_to "Archived Stories", archived_meta_headlines_stories_path %>
-  </center>
-</h3>
 <table>
   <thead>
     <tr>
@@ -23,14 +15,14 @@
     <% if !@stories.blank? %>
       <% for story in @stories %>
         <tr>
-          <td><%= link_to story.title, edit_meta_headlines_story_path(story), :method => :get  %></td>
+          <td><%= link_to story.title, edit_admin_headlines_story_path(story), :method => :get  %></td>
           <td><%= story.summary %></td>
-          <td><%= link_to story.author.login, meta_user_edit_url(story.author), {:class => "admin", :title => "Edit user"} -%></td>
+          <td><%= link_to story.author.login, edit_admin_user_url(story.author), {:class => "admin", :title => "Edit user"} -%></td>
           <td>
-            <%= link_to "Approve", edit_approve_meta_headlines_story_path(story), :method => :post %>
+            <%= link_to "Approve", edit_approve_admin_headlines_story_path(story), :method => :post %>
           </td>
           <td>
-            <% form_for story, :url => meta_headlines_story_path(story), :html => {:method => :delete}  do |f| -%>
+            <% form_for story, :url => admin_headlines_story_path(story), :html => {:method => :delete}  do |f| -%>
               <%= f.submit "Delete", :disable_with => 'Deleting...' %>
             <% end -%>
           </td>
