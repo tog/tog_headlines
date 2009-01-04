@@ -1,38 +1,7 @@
-<h2>Draft stories
-  <%= link_to "Create", new_admin_headlines_story_path, :class => "create button add" %>
-</h2>
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Summary</th>
-      <th scope="col">User</th>
-      <th scope="col" style="width: 50px;">&nbsp;</th>
-      <th scope="col" style="width: 50px;">&nbsp;</th>
-    </tr> 
-  </thead>
-  <tbody>
-    <% if !@stories.blank? %>
-      <% for story in @stories %>
-        <tr>
-          <td><%= link_to story.title, edit_admin_headlines_story_path(story), :method => :get  %></td>
-          <td><%= story.summary %></td>
-          <td><%= link_to story.author.login, edit_admin_user_url(story.author), {:class => "admin", :title => "Edit user"} -%></td>
-          <td>
-            <%= link_to "Approve", edit_approve_admin_headlines_story_path(story), :method => :post %>
-          </td>
-          <td>
-            <% form_for story, :url => admin_headlines_story_path(story), :html => {:method => :delete}  do |f| -%>
-              <%= f.submit "Delete", :disable_with => 'Deleting...' %>
-            <% end -%>
-          </td>
-        </tr>
-      <% end %> 
-    <% else %>
-     <tr>
-       <td colspan="5" class="note">Empty.</td>
-     </tr>
-    <% end %>
-  </tbody>
-<%= will_paginate %>
-</table>
+<h1><%= link_to I18n.t("tog_headlines.plugin_title"), admin_headlines_stories_path%> / <%= I18n.t("tog_headlines.admin.draft_stories") %></h1>
+
+<p>
+<%= link_to I18n.t("tog_headlines.admin.create_story"), new_admin_headlines_story_path, :class => "create button add" %>
+</p>
+
+<%= render :partial => 'stories_table' %>

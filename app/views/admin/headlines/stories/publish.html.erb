@@ -5,7 +5,7 @@
 <%= error_messages_for :story %>
 <% form_for :story, :url => {:action => :update}, :html => {:method => :put, :id => "story_form"} do |f| -%>
 
-  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= render :partial => 'form_date', :locals => { :f => f } %>
   <br />  
   <p>
     <br/>

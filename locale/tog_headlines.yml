@@ -1,16 +1,51 @@
 # {{xxx}}
-en-US:
+en:
   tog_headlines:
+    plugin_name: Headlines
     plugin_title: News
-
+    model:
+      published: published
+      draft: draft
+      archived: archived
+      title: Title
+      summary: Summary
+      body: Body
+      editor: Editor
+      created_at: Created at
+      publish_date: Publish date
+      archive_date: Archive date
+      tags: Tags
+      tags_explanation: (separated by ,)
+      state: State
+      main_info: Main info
+      meta_info: Meta info
+      content: Content
     site:
       no_news: No news yet
-      item: New
+      item: Story
     member:
       key2: key2
     admin:
       story_created: Story has been created successfully
       story_deleted: Story has been deleted successfully
       story_updated: Story has been updated successfully
+      published_stories: Published stories
+      draft_stories: Draft stories
+      archived_stories: Archived stories
+      create: Create story
+      delete: Delete
+      delete_confirmation: Are you sure you want to remove this story?
+      please_wait: Please wait...
+      no_news: No news yet
+      edit: Edit
+      edit_story: Edit story
+      update: Update
+      update_story: Update story
+      create: Create
+      create_story: Create story
+      publish_dates: Publish between dates
+      publish: Publish
+      unpublish: Move to draft
+      publication: Publication
     mailer: 
       key4: key4

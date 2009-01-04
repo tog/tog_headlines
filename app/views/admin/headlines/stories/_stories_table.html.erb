@@ -1,0 +1,54 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col"><%= I18n.t("tog_headlines.model.title") %></th>
+      <th scope="col"><%= I18n.t("tog_headlines.model.editor") %></th>
+      <th scope="col"><%= I18n.t("tog_headlines.model.created_at") %></th>
+      <th scope="col"><%= I18n.t("tog_headlines.model.state") %></th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr> 
+  </thead>
+  <%if !@stories.empty?%>  
+    <tfoot>
+      <tr>
+        <td colspan="7" class="info_results">
+          <span class="info_items"><%= page_entries_info @stories %></span>
+          <span class="pages_navigation right">
+            <%= will_paginate @stories, :container => false %>
+          </span>
+          </td>
+      </tr>
+    </tfoot>
+  <%end%>  
+  <tbody>
+    <% if !@stories.blank? %>
+      <% for story in @stories %>
+        <tr>
+          <td><%= link_to story.title, admin_headlines_story_path(story), :method => :get  %></td>
+          <td><%= link_to story.editor.login, edit_admin_user_url(story.editor), {:class => "admin"} -%></td>
+          <td><%= story.created_at %></td>
+          <td><%= story.state %><% if story.state == 'published'%><br /><%=story.publish_date %> - <%= story.archive_date %><%end%></td>
+          <td>
+            <% if story.state != 'published'%>
+              <%= link_to I18n.t("tog_headlines.admin.publish"), publish_admin_headlines_story_path(story), :class => 'button' %>
+            <%else%>
+              <%= link_to I18n.t("tog_headlines.admin.unpublish"), unpublish_admin_headlines_story_path(story), :class => 'button' %>            
+            <%end%>
+          </td>
+          <td><%= link_to I18n.t("tog_headlines.admin.edit"), edit_admin_headlines_story_path(story), :class => 'button'  %></td>          
+          <td>
+            <% form_for story, :url => admin_headlines_story_path(story), :html => {:method => :delete}  do |f| -%>
+              <%= f.submit I18n.t("tog_headlines.admin.delete"), :disable_with => I18n.t("tog_headlines.admin.please_wait"), :class => 'button' %>
+            <% end -%>
+          </td>
+        </tr>
+      <% end %> 
+    <% else %>
+     <tr>
+       <td colspan="7" class="note"><%= I18n.t("tog_headlines.admin.no_news") %></td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>

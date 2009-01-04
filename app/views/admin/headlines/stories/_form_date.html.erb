@@ -1,7 +1,12 @@
-<% include_javascript "fckeditor/fckeditor" %>
-<label>Publish date
-  <%= f.date_select :publish_date, {:order => [:day, :month, :year]} %>
-</label>
-<label>Archive date
-  <%= f.date_select :archive_date, {:order => [:day, :month, :year], :default => 1.month.from_now }  %>
-</label>
+<table class="tableE">
+  <caption><%= I18n.t("tog_headlines.admin.publication") %></caption>
+  <tbody>
+    <tr>
+        <th scope="row"><%= I18n.t("tog_headlines.model.publish_date") %></th>
+        <td nowrap="nowrap"><%=f.date_select :publish_date, :class=>"fieldbox" %></td>
+    </tr>
+  <tr>
+      <th scope="row"><%= I18n.t("tog_headlines.model.archive_date") %></th>
+      <td nowrap="nowrap"><%=f.date_select :archive_date, :class=>"fieldbox" %></td>
+  </tr>               
+</tbody></table>

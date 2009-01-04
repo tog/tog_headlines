@@ -1,11 +1,27 @@
-<h2> <%= @story.title %> </h2>
-<fieldset>
-<strong> Summary </strong>
-<%= @story.summary %> <br />
-<strong> Body </strong>
-<%= @story.body %> <br />
-<strong> Publish Date </strong>
-<%= fecha(@story.publish_date) %> <br />
-<strong> Archive Date </strong>
-<%= fecha(@story.archive_date) %>
-</fieldset>
+<h1><%= link_to I18n.t("tog_headlines.plugin_title"), admin_headlines_stories_path%> / <%=@story.title%></h1>
+
+<p>
+<% if @story.state != 'published'%>
+  <%= link_to I18n.t("tog_headlines.admin.publish"), publish_admin_headlines_story_path(@story), :class => 'button' %>
+<%else%>
+  <%= link_to I18n.t("tog_headlines.admin.unpublish"), unpublish_admin_headlines_story_path(@story), :class => 'button' %>            
+<%end%>  
+  
+<%= link_to I18n.t("tog_headlines.admin.edit"), edit_admin_headlines_story_url(@story), {:title => I18n.t("tog_headlines.admin.edit_event"), :class => 'button'} -%>
+
+<%= link_to I18n.t("tog_headlines.admin.delete"), admin_headlines_story_path(@story), :confirm => I18n.t("tog_headlines.admin.delete_confirmation"), :method => :delete, :class => "button delete" %>
+</p>
+
+<table class="tableE">
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.title") %></th><td><%=@story.title%></td></tr>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.tags") %></th><td><%=@story.tag_list%></td></tr>	
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.summary") %></th><td><%=@story.summary%></td></tr>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.body") %></th><td><%=@story.body%></td></tr>
+	<% if @story.state != 'draft'%>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.publish_date") %></th><td><%=@story.publish_date%></td></tr>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.archive_date") %></th><td><%=@story.archive_date%></td></tr>
+	<%end%>
+</table>
+
+<br />
+

@@ -1,10 +1,15 @@
-<%= error_messages_for :story %>
-<% include_javascript "fckeditor/fckeditor" %>
-<% form_for :story, :url => {:action => :create},  :html => {:id => "settings"} do |f| -%>
-<h2>Create Story</h2>
-<fieldset>
-  <%= render :partial => 'form', :locals => { :f => f } %>
-  <%= submit_tag 'Create', {:accesskey => "s"} %>
-</fieldset>
-<% end -%>
+<h1><%= link_to I18n.t("tog_headlines.plugin_title"), admin_headlines_stories_path%> / <%= I18n.t("tog_headlines.admin.create_story") %></h1>
 
+<br />
+
+<%= error_messages_for :story %>
+<% form_for :story, :url => {:action => :create},  :html => {:id => "settings"} do |f| -%>
+
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <br />  
+  <p>
+    <br/>
+    <%= submit_tag I18n.t("tog_headlines.admin.create"), {:accesskey => "s", :class=>"button"} %>
+  </p>
+    
+<% end -%>
