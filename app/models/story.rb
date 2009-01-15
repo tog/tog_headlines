@@ -3,6 +3,7 @@ class Story < ActiveRecord::Base
   acts_as_commentable
   acts_as_taggable
   seo_urls
+  acts_as_rateable :average => true
 
   belongs_to :publisher, :class_name => "User", :foreign_key => "publisher_id"  
   belongs_to :editor,    :class_name => "User", :foreign_key => "editor_id"  
