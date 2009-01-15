@@ -12,4 +12,7 @@
     </div> <!-- /.detailA -->
 </div> <!-- /.internal_padding -->
 
+<%= render :partial => '/shared/rating', :locals => {:rateable => @story}%>
+
+
 <%= render :partial => '/shared/comments', :locals => {:comments => @story.comments, :commentable => @story}%>
