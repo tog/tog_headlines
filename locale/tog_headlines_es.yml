@@ -28,20 +28,20 @@ es:
       story_created: La noticia ha sido creada satisfactoriamente
       story_deleted: La noticia ha sido borrada satisfactoriamente
       story_updated: La noticia ha sido actualizada satisfactoriamente
-      published_stories: Historias publicadas
-      draft_stories: Historias en borrador
-      archived_stories: Historias archivadas
-      create: Crear historia
+      published_stories: Noticias publicadas
+      draft_stories: Noticias en borrador
+      archived_stories: Noticias archivadas
+      create: Crear noticia
       delete: Eliminar
       delete_confirmation: ¿Está seguro de querer eliminar esta historia?
       please_wait: Por favor espere...
-      no_news: Aún no hay historias
+      no_news: Aún no hay noticias
       edit: Editar
-      edit_story: Editar historia
+      edit_story: Editar noticia
       update: Actualizar
-      update_story: Actualizar historia
+      update_story: Actualizar noticia
       create: Crear
-      create_story: Crear historia
+      create_story: Crear noticia
       publish_dates: Publicar entre las fechas
       publish: Publicar
       unpublish: Mover a borrador
