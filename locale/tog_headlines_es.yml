@@ -1,4 +1,11 @@
 es:
+  interface:
+    admin:
+      news: "Noticias"
+      news_items:
+        published: "Publicadas"
+        drafts: "Borradores"
+        archived: "Archivadas"  
   tog_headlines:
     plugin_name: Headlines    
     plugin_title: Noticias

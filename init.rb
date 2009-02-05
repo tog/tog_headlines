@@ -13,9 +13,9 @@ end
 
 Tog::Plugins.helpers Headlines::StoriesHelper
 
-Tog::Interface.sections(:admin).add "News", "/admin/headlines/stories"
-Tog::Interface.sections(:admin).tabs("News").add_item "Published", "/admin/headlines/stories/published"
-Tog::Interface.sections(:admin).tabs("News").add_item "Drafts", "/admin/headlines/stories/draft"
-Tog::Interface.sections(:admin).tabs("News").add_item "Archived", "/admin/headlines/stories/archived"
+manage = Tog::Interface.sections(:admin).add "News", "/admin/headlines/stories"
+manage.add_item "Published", "/admin/headlines/stories/published"
+manage.add_item "Drafts", "/admin/headlines/stories/draft"
+manage.add_item "Archived", "/admin/headlines/stories/archived"
 
 Tog::Search.sources << "Story"

@@ -1,5 +1,12 @@
 # {{xxx}}
 en:
+  interface:
+    admin:
+      news: "News"
+      news_items:
+        published: "Published"
+        drafts: "Drafts"
+        archived: "Archived"  
   tog_headlines:
     plugin_name: Headlines
     plugin_title: News
