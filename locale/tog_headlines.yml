@@ -27,6 +27,10 @@ en:
       main_info: Main info
       meta_info: Meta info
       content: Content
+      states:
+        draft: draft
+        published: published
+        archived: archived
     site:
       no_news: No news yet
       item: Story
@@ -54,5 +58,7 @@ en:
       publish: Publish
       unpublish: Move to draft
       publication: Publication
+      from: From
+      to: To
     mailer: 
       key4: key4

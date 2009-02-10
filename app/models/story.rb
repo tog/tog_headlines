@@ -42,6 +42,10 @@ class Story < ActiveRecord::Base
     sql = "%#{query}%"
     Story.find(:all, :conditions => ["state = ? and (title like ? or summary like ? or body like ?)", 'published', sql, sql, sql])
   end
+  
+  def state_text
+    I18n.t("tog_headlines.model.states.#{self.state}")
+  end
 
   private 
     def check_state

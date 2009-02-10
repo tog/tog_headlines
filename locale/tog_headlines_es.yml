@@ -26,6 +26,10 @@ es:
       main_info: Información principal
       meta_info: Meta-información
       content: Contenido
+      states:
+        draft: borrador
+        published: publicado
+        archived: archivado      
     site:
       no_news: No hay noticias aún
       item: Noticia
@@ -53,5 +57,7 @@ es:
       publish: Publicar
       unpublish: Mover a borrador
       publication: Publicación
+      from: Desde
+      to: Hasta      
     mailer: 
       key4: key4      
