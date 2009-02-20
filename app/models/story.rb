@@ -49,7 +49,7 @@ class Story < ActiveRecord::Base
 
   private 
     def check_state
-      if self.state == 'published' && self.publish_date && self.publish_date < Date.today
+      if self.state == 'published' && self.archive_date && self.archive_date < Date.today
         self.archive!
       elsif self.state == 'draft' && self.publish_date
         self.publish_date < Date.today ? self.archive! : self.publish! 
