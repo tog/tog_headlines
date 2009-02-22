@@ -13,6 +13,9 @@ end
 
 Tog::Plugins.helpers Headlines::StoriesHelper
 
+Tog::Interface.sections(:site).add "News", "/headlines/stories"     
+
+
 manage = Tog::Interface.sections(:admin).add "News", "/admin/headlines/stories"
 manage.add_item "Published", "/admin/headlines/stories/published"
 manage.add_item "Drafts", "/admin/headlines/stories/draft"

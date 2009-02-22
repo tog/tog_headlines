@@ -1,6 +1,8 @@
 # {{xxx}}
 en:
   interface:
+    site:
+      news: "News"
     admin:
       news: "News"
       news_items:

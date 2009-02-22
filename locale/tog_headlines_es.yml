@@ -1,5 +1,7 @@
 es:
   interface:
+    site:
+      news: "Noticias"
     admin:
       news: "Noticias"
       news_items:
