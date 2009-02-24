@@ -42,7 +42,7 @@ class Story < ActiveRecord::Base
   end
 
   def draft?
-    self.publish_date <= Time.now && self.archive_date > Time.now
+    self.state == 'draft'
   end  
   def published?
     self.publish_date <= Time.now && self.archive_date > Time.now
