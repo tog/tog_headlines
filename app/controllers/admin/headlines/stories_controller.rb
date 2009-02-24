@@ -71,7 +71,6 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   end
 
   def publish
-    redirect_to draft_admin_headlines_stories_path    
   end
 
   def unpublish
