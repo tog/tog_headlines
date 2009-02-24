@@ -41,7 +41,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
                                   :order => @order + " " + @asc
   end  
   def draft
-    @order = params[:order] || 'publish_date'
+    @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
     @stories = Headlines::Story.draft.paginate :per_page => 20,
@@ -61,6 +61,8 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   def update
     @story.editor = current_user
     if @story.update_attributes(params[:story])
+      @story.publish! if @story.published?
+      @story.archive! if @story.archived?
       flash[:ok] = I18n.t("tog_headlines.admin.story_updated")
       redirect_to admin_headlines_story_path(@story)
     else
@@ -69,11 +71,11 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   end
 
   def publish
+    redirect_to draft_admin_headlines_stories_path    
   end
 
   def unpublish
-    @story.publish_date = nil
-    @story.save!
+    @story.unpublish!
     redirect_to draft_admin_headlines_stories_path    
   end
 

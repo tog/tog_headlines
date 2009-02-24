@@ -1,7 +1,7 @@
 <h1><%= link_to I18n.t("tog_headlines.plugin_title"), admin_headlines_stories_path%> / <%=@story.title%></h1>
 
 <p>
-<% if @story.state != 'published'%>
+<% unless @story.published?%>
   <%= link_to I18n.t("tog_headlines.admin.publish"), publish_admin_headlines_story_path(@story), :class => 'button' %>
 <%else%>
   <%= link_to I18n.t("tog_headlines.admin.unpublish"), unpublish_admin_headlines_story_path(@story), :class => 'button' %>            
@@ -17,9 +17,9 @@
 	<tr><th scope="row"><%= I18n.t("tog_headlines.model.tags") %></th><td><%=@story.tag_list%></td></tr>	
 	<tr><th scope="row"><%= I18n.t("tog_headlines.model.summary") %></th><td><%=@story.summary%></td></tr>
 	<tr><th scope="row"><%= I18n.t("tog_headlines.model.body") %></th><td><%=@story.body%></td></tr>
-	<% if @story.state != 'draft'%>
-	<tr><th scope="row"><%= I18n.t("tog_headlines.model.publish_date") %></th><td><%=@story.publish_date%></td></tr>
-	<tr><th scope="row"><%= I18n.t("tog_headlines.model.archive_date") %></th><td><%=@story.archive_date%></td></tr>
+	<% unless @story.draft?%>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.publish_date") %></th><td><%=@story.publication_date%></td></tr>
+	<tr><th scope="row"><%= I18n.t("tog_headlines.model.archive_date") %></th><td><%=@story.archivation_date%></td></tr>
 	<%end%>
 </table>
 

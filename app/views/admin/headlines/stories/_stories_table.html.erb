@@ -4,7 +4,7 @@
       <th scope="col"><%= I18n.t("tog_headlines.model.title") %></th>
       <th scope="col"><%= I18n.t("tog_headlines.model.editor") %></th>
       <th scope="col"><%= I18n.t("tog_headlines.model.created_at") %></th>
-      <th scope="col"><%= I18n.t("tog_headlines.model.state") %></th>
+      <th scope="col">&nbsp;</th>
       <th scope="col">&nbsp;</th>
       <th scope="col">&nbsp;</th>
       <th scope="col">&nbsp;</th>
@@ -29,14 +29,13 @@
           <td width="200"><%= link_to story.title, admin_headlines_story_path(story), :method => :get  %></td>
           <td><%= link_to story.editor.login, edit_admin_user_url(story.editor), {:class => "admin"} -%></td>
           <td><%= I18n.l(story.created_at, :format => :short) %></td>
-          <td><%= story.state_text %>
-              <% if story.state == 'published'%>
-                <br />&nbsp;&nbsp;&nbsp;<%=I18n.t('tog_headlines.admin.from')%>: <%= I18n.l(story.publish_date, :format => :short) %>
-                <br />&nbsp;&nbsp;&nbsp;<%=I18n.t('tog_headlines.admin.to')%>: <%= I18n.l(story.archive_date, :format => :short) %>
+          <td><% unless story.draft?%>
+                <br />&nbsp;&nbsp;&nbsp;<%=story.publication_date %>
+                <br />&nbsp;&nbsp;&nbsp;<%=story.archivation_date %>
               <%end%>
           </td>
           <td><span style="display:inline">
-            <% if story.state != 'published'%>
+            <% unless story.published? %>
               <%= link_to I18n.t("tog_headlines.admin.publish"), publish_admin_headlines_story_path(story), :class => 'button' %>
             <%else%>
               <%= link_to I18n.t("tog_headlines.admin.unpublish"), unpublish_admin_headlines_story_path(story), :class => 'button' %>            

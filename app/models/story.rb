@@ -10,17 +10,15 @@ class Story < ActiveRecord::Base
   belongs_to :owner,     :class_name => "User", :foreign_key => "user_id"  
 
   named_scope :draft, :conditions => ['state = ?', 'draft']
-  named_scope :archived, :conditions => ['state = ?', 'archived']
-  named_scope :published, :conditions => ['state = ?', 'published']
-
-  before_save :check_state
+  named_scope :archived, :conditions => ['archive_date <= ?', Time.now]
+  named_scope :published, :conditions => ['publish_date <= ? and archive_date > ?', Time.now, Time.now]
   
   validates_presence_of :title, :body
 
   acts_as_state_machine :initial => :draft, :column => "state" 
-  state :draft
-  state :archived
-  state :published
+  state :draft, :enter => :clean_dates
+  state :archived, :enter => :set_archivation_date
+  state :published, :enter => :set_publication_date
 
   event :publish do
     transitions :from => :draft, :to => :published
@@ -40,22 +38,38 @@ class Story < ActiveRecord::Base
   
   def self.site_search(query, search_options={})
     sql = "%#{query}%"
-    Story.find(:all, :conditions => ["state = ? and (title like ? or summary like ? or body like ?)", 'published', sql, sql, sql])
+    Story.published.find(:all, :conditions => ["title like ? or summary like ? or body like ?", sql, sql, sql])
   end
-  
-  def state_text
-    I18n.t("tog_headlines.model.states.#{self.state}")
+
+  def draft?
+    self.publish_date <= Time.now && self.archive_date > Time.now
+  end  
+  def published?
+    self.publish_date <= Time.now && self.archive_date > Time.now
+  end
+  def archived?
+    self.archive_date <= Time.now
+  end
+
+  def archivation_date(format=:short)
+    I18n.l(self.archive_date, :format => format)
+  end  
+  def publication_date(format=:short)
+    I18n.l(self.publish_date, :format => format)
   end
 
   private 
-    def check_state
-      if self.state == 'published' && self.archive_date && self.archive_date < Date.today
-        self.archive!
-      elsif self.state == 'draft' && self.publish_date
-        self.publish_date < Date.today ? self.archive! : self.publish! 
-      elsif !self.publish_date
-        self.unpublish! if self.state == 'published' 
-        self.unarchive! if self.state == 'archived' 
-      end
+  
+    def set_archivation_date
+      self.archive_date = Time.now 
     end
+    def set_publication_date
+      self.publish_date = Time.now unless self.publish_date
+      self.archive_date = Date.today + 1.year unless self.archive_date
+    end
+    def clean_dates
+      self.publish_date = nil
+      self.archive_date = nil
+    end
+
 end

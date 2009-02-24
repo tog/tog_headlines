@@ -1,7 +1,7 @@
 class Headlines::StoriesController < ApplicationController
   
   def show
-    @story = Headlines::Story.find(params[:id])
+    @story = Headlines::Story.published.find(params[:id])
   end
 
   def by_tag

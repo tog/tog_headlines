@@ -5,31 +5,82 @@ class StoryTest < Test::Unit::TestCase
     
     setup do
       @economy = Factory(:story, :title => 'Crisis', :summary => 'more more ...', :body => 'bla bla ...')
-      @country = Factory(:story, :title => 'New country', :summary => 'more', :body => 'country beautiful')
+      @country = Factory(:story, :title => 'New country', :summary => ' something more ', :body => 'a brand new country released')
+    end
+        
+    should "should be in draft state by default" do
+      assert_equal @economy.state, 'draft'
+    end  
+
+    should "be included in draft stories" do
+      assert_contains Story.draft, @economy
     end
 
-    should "should be equal" do
-      assert @economy.title, 'Crisis'
+    should "not be included in published stories" do
+      assert_does_not_contain Story.published, @economy
     end
+            
+    should "not be included in archived stories" do
+      assert_does_not_contain Story.archived, @economy
+    end
+
+    context "that is published" do
+      setup do
+        @country.publish!
+      end
     
-    should "should find one result" do
-      assert_contains Story.site_search('Crisis'), @economy
+      should "have publish_date setted" do
+        assert @country.publish_date
+      end
 
-      @stories = Story.site_search('country')
-
-      assert_contains @stories, @country
-      assert @stories.size, 1 
+      should "be included in published stories" do
+        assert_contains Story.published, @country
+      end
+            
+      should "not be included in published stories if archive_date has been reached" do
+        @economy.archive_date = Date.today - 1.month
+        @economy.publish_date = Date.today - 2.month
+        @economy.publish!        
+        assert_does_not_contain Story.published, @economy
+      end  
+      
+      should "not be included in draft stories" do
+        assert_does_not_contain Story.draft, @country
+      end
+            
+      should "not be included in archived stories" do
+        assert_does_not_contain Story.archived, @country
+      end          
     end
+        
+    context "that is archived" do
+      setup do
+        @country.publish!
+        @country.archive!
+      end
     
-    should "should find two result" do
-      @stories = Story.site_search('more')
+      should "should be published before archived" do
+        @economy.archive!
+        assert_equal @economy.state, 'draft'
+      end
+          
+      should "have archive_date setted" do
+        assert @country.archive_date
+      end
       
-      assert_contains @stories, @economy
-      assert_contains @stories, @country
+      should "be included in archived stories" do
+        assert_contains Story.archived, @country
+      end      
       
-      assert @stories.size, 2
-    end
-  
+      should "not be included in published stories" do
+        assert_does_not_contain Story.published, @country
+      end      
+      
+      should "not be included in draft stories" do
+        assert_does_not_contain Story.draft, @country
+      end      
+    end          
+          
   end
 
 end

@@ -13,7 +13,7 @@ end
 namespace(:admin) do |admin| 
   admin.namespace(:headlines) do |headlines| 
     headlines.resources :stories,
-    :collection => { :published => :get, :draft => :get, :archived => :get },
-      :member => {:publish => :get, :unpublish => :get }
+      :collection => { :published => :get, :draft => :get, :archived => :get },
+      :member     => { :publish => :get, :unpublish => :get }
   end
 end
