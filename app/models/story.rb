@@ -45,10 +45,10 @@ class Story < ActiveRecord::Base
     self.state == 'draft'
   end  
   def published?
-    self.publish_date <= Time.now && self.archive_date > Time.now
+    !self.draft? && self.publish_date <= Time.now && self.archive_date > Time.now
   end
   def archived?
-    self.archive_date <= Time.now
+    !self.draft? && self.archive_date <= Time.now
   end
 
   def archivation_date(format=:short)
