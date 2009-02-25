@@ -10,7 +10,13 @@ class StoryTest < Test::Unit::TestCase
         
     should "should be in draft state by default" do
       assert_equal @economy.state, 'draft'
-    end  
+    end 
+    
+    should "responds to it's state correctly" do
+      assert @country.draft?
+      assert !@country.published?
+      assert !@country.archived?
+    end     
 
     should "be included in draft stories" do
       assert_contains Story.draft, @economy
@@ -27,6 +33,12 @@ class StoryTest < Test::Unit::TestCase
     context "that is published" do
       setup do
         @country.publish!
+      end
+
+      should "responds to it's state correctly" do
+        assert !@country.draft?
+        assert @country.published?
+        assert !@country.archived?
       end
     
       should "have publish_date setted" do
@@ -59,6 +71,12 @@ class StoryTest < Test::Unit::TestCase
         @country.archive!
       end
     
+      should "responds to it's state correctly" do
+        assert !@country.draft?
+        assert !@country.published?
+        assert @country.archived?
+      end
+          
       should "should be published before archived" do
         @economy.archive!
         assert_equal @economy.state, 'draft'
