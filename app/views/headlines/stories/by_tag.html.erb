@@ -1,0 +1,20 @@
+<div class="titleA round clearfix"><span class="float_right"><%=link_to image_tag('/images/ico/rss.gif'), formatted_headlines_stories_url(:atom)%></span>
+    <%= I18n.t("tog_headlines.plugin_title") %>.
+</div>
+<br>
+<div class="internal_padding">
+  <% if !@stories.blank? %>
+    <% for story in @stories %>
+      <ul class="listA">
+          <li class="clearfix">
+            <div class="title"><%= link_to story.title, headlines_story_path(story) %></div>
+            <div class="date"><%= story.created_at.strftime('(%d/%m/%y)')%></div>
+            <div class="text"><%= story.summary %></div>            
+          </li>
+      </ul>
+    <% end %>
+  <% else %>
+       <%= I18n.t("tog_headlines.site.no_news") %>.
+  <% end %>  
+  
+</div> <!-- /.internal_padding -->

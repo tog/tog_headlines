@@ -1,0 +1,10 @@
+<span class="fontsmaller">
+    Tags:
+    <%- if !story.tags.blank? -%>
+      <%- for tag in story.tag_list -%>
+       <%= link_to tag, headlines_tag_headlines_stories_path(tag) %>,
+      <%- end -%>
+    <%- else -%>
+       No tags associated
+    <%- end -%> 
+</span>
