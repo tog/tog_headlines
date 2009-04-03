@@ -13,9 +13,9 @@ class StoryTest < Test::Unit::TestCase
     end 
     
     should "responds to it's state correctly" do
-      assert @country.draft?
-      assert !@country.published?
-      assert !@country.archived?
+      assert_equal true,  @country.draft?
+      assert_equal false, @country.published?
+      assert_equal false, @country.archived?
     end     
 
     should "be included in draft stories" do
@@ -36,9 +36,9 @@ class StoryTest < Test::Unit::TestCase
       end
 
       should "responds to it's state correctly" do
-        assert !@country.draft?
-        assert @country.published?
-        assert !@country.archived?
+        assert_equal false, @country.draft?
+        assert_equal true,  @country.published?
+        assert_equal false, @country.archived?
       end
     
       should "have publish_date setted" do
@@ -72,9 +72,9 @@ class StoryTest < Test::Unit::TestCase
       end
     
       should "responds to it's state correctly" do
-        assert !@country.draft?
-        assert !@country.published?
-        assert @country.archived?
+        assert_equal false, @country.draft?
+        assert_equal false,@country.published?
+        assert_equal true, @country.archived?
       end
           
       should "should be published before archived" do

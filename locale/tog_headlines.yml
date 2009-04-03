@@ -36,8 +36,11 @@ en:
     site:
       no_news: No news yet
       item: Story
+      tags: 'Tags:'
+      no_tags_associated: No tags associated
     member:
-      key2: key2
+      story_created: Story has been created successfully      
+      error_creating: There was an error creting the story
     admin:
       story_created: Story has been created successfully
       story_deleted: Story has been deleted successfully

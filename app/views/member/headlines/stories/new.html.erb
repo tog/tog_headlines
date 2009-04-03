@@ -6,60 +6,56 @@
       TODO: mensaje de usuario no activo
    
     <% else %>
-      <% form_for :story, :url => {:action => :create}, :html => {:id => "f_story", :multipart => true} do |f| -%>
-         <p>
-           <label for="title"><strong>Título de la Noticia</strong></label>
-             <%= f.text_field :title, {:size => 40, :class => "fieldbox wide"} %>
-           </label>
-         </p>
-
-         <p>
-           <label for="tags"><strong>Tags (separa por comas):</strong><br />
-              <%= f.text_field :tag_list, {:size => nil} -%>
-           </label>
-         </p>
-
-         <% unless current_user.groups.empty? %>
-         <p>
-           <label for="text"><strong>Compartir con comunidades</strong><br />
-             <%
-               groups_id = @story.groups.map {|g| g.id }
-               current_user.groups.each {|group| %>
-               <input type="checkbox"
-                      name="story[groups][]"
-                      id="story_group_<%= h group.id %>"
-                      value="<%= h group.id %>"
-              <% if groups_id.include?(group.id) %>
-                      checked = "checked"
-              <% end %>
-              />
-              <label for="story_group_<%= h group.id %>"><%= h group.name %></label>
-              <br />
-            <% } %>
-         </p>
-         <% end %>
-         <input type="hidden" name="story[groups][]" value="0" />
-
-         <p>
-           <label for="text"><strong>Resumen de la noticia:</strong><br />
-              <%= f.text_area :body, {:cols => 40, :rows => 7, :class => "fieldbox wide"} %>
-           </label>
-         </p>
-
-         <p>
-           <label for="text"><strong>Contenido de la noticia:</strong><br />
-              <%= f.text_area :body, {:cols => 40, :rows => 7, :class => "fieldbox wide"} %>
-           </label>
-         </p>
-
-          <div class="form_actions center">
-            <br />
-            <%= submit_tag 'Publicar', {:class=>"button1", :style => "font-size: 1em;"} %>
-          </div>
-        <% end -%>
+      <%= error_messages_for :story %>
+      <% form_for :story, :url => {:action => :create},  :html => {:id => "settings"} do |f| -%>
+        <p>
+          <label for="title"><strong>Título de la Noticia</strong></label>
+           <%= f.text_field :title, {:size => 40, :class => "fieldbox wide"} %>
+          </label>  
+        </p>
+        <p>
+         <label for="tags"><strong>Tags (separa por comas):</strong><br />
+            <%= f.text_field :tag_list, {:size => nil} -%>
+         </label>
+        </p>
+        <p>
+           <label for="tags"><strong><%= I18n.t("tog_headlines.model.source") %></strong><br />
+             <%=f.text_field :source, :class => "fieldbox" %>
+           </label>      
+        </p>
+        <p>
+           <label for="tags"><strong><%= I18n.t("tog_headlines.model.lang") %></strong><br />
+             <%=f.select :lang, {"Español"=>"es"}, :class => "fieldbox"%>
+           </label>      
+        </p>
+        <p>
+         <label for="tags"><strong><%= I18n.t("tog_headlines.model.publish_date") %></strong><br />
+          <%=f.date_select :publish_date, :class=>"fieldbox" %>
+         </label>                     
+        </p>    
+        <p>
+          <label for="archive_date"><%= I18n.t("tog_headlines.model.archive_date") %></strong><br />
+          <%=f.date_select :archive_date, :class=>"fieldbox" %>
+          </label>                   
+        </p>         
+        <p>
+         <label for="text"><strong>Resumen de la noticia:</strong><br />
+            <%= f.text_area :summary, {:cols => 40, :rows => 7, :class => "fieldbox wide"} %>
+         </label>
+        </p>
+        <p>
+          <label for="text"><strong>Contenido de la noticia:</strong><br />
+            <%= f.text_area :body, {:cols => 40, :rows => 7, :class => "fieldbox wide"} %>
+          </label>  
+        </p>
+        <div class="form_actions center">
+          <br />
+          <%= submit_tag 'Publicar', {:class=>"button1", :style => "font-size: 1em;"} %>
+        </div>  
       <% end -%>
+    <% end -%>    
 
-     </form>
+     <!--/form-->
 
 
    </div> <!-- ./main_content -->

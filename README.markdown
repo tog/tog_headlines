@@ -5,12 +5,12 @@ A plugin for manage news, press releases, etc.
 
 == Included functionality
 
-* News include title, summary and body, news can also be tagged and commented
+* News include title, summary and body
+* News can also be tagged, commented and rated (tog_core's support)
 * Internationalized UI
 * Small workflow: draft, published and archived states
 * Date based publication
-* Right now, only admin can add news (support for regular members and group's news ais planned)
-
+* Site-wide news and user's own news, used for sharing them with groups
 
 Resources
 =========
@@ -20,9 +20,7 @@ Plugin requirements
 
 In case you haven't installed any of them previously you'll need the following plugins:
 
-* [acts\_as\_commentable](https://github.com/tog/tog/wikis/3rd-party-plugins-acts_as_commentable)
 * [seo\_urls](https://github.com/tog/tog/wikis/3rd-party-plugins-seo_urls)
-* [acts\_as\_taggable\_on\_steroids](https://github.com/tog/tog/wikis/3rd-party-plugins-acts_as_taggable_on_steroids)
 
 Follow each link above for a short installation guide incase you have to install them.			
 
@@ -46,7 +44,7 @@ with the following content:
 <pre>
 class InstallHeadlines < ActiveRecord::Migration
   def self.up
-    migrate_plugin "tog_headlines", 1
+    migrate_plugin "tog_headlines", 2
   end
 
   def self.down

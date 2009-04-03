@@ -35,8 +35,11 @@ es:
     site:
       no_news: No hay noticias aún
       item: Noticia
+      tags: 'Etiquetas:'
+      no_tags_associated: No hay etiquetas asociadas      
     member:
-      key2: key2
+      story_created: La noticia ha sido creada satisfactoriamente
+      error_creating: No se pudo crear la noticia
     admin:
       story_created: La noticia ha sido creada satisfactoriamente
       story_deleted: La noticia ha sido borrada satisfactoriamente

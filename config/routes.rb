@@ -5,8 +5,8 @@ end
 
 namespace(:member) do |member| 
   member.namespace(:headlines) do |headlines| 
-    headlines.resources :stories,
-    :collection => { :published => :get, :draft => :get, :archived => :get }
+    headlines.resources :stories, 
+      :collection => { :published => :get, :draft => :get, :archived => :get }
   end
 end
 

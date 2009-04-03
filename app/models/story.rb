@@ -12,6 +12,9 @@ class Story < ActiveRecord::Base
   named_scope :draft, :conditions => ['state = ?', 'draft']
   named_scope :archived, :conditions => ['archive_date <= ?', Time.now]
   named_scope :published, :conditions => ['publish_date <= ? and archive_date > ?', Time.now, Time.now]
+
+  named_scope :site, :conditions => ['portal = ?', true]
+
   
   validates_presence_of :title, :body
 
@@ -45,10 +48,10 @@ class Story < ActiveRecord::Base
     self.state == 'draft'
   end  
   def published?
-    self.publish_date && self.archive_date && self.publish_date <= Time.now && self.archive_date > Time.now
+    !self.publish_date.nil? && !self.archive_date.nil?  && self.publish_date <= Time.now && self.archive_date > Time.now
   end
   def archived?
-    self.archive_date && self.archive_date <= Time.now
+    !self.archive_date.nil? && self.archive_date <= Time.now
   end
 
   def archivation_date(format=:short)
