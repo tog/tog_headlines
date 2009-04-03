@@ -14,7 +14,7 @@ class Member::Headlines::StoriesController < Member::BaseController
     flash[:ok] = I18n.t("tog_headlines.member.story_created")
     redirect_to draft_member_headlines_stories_path
     rescue ActiveRecord::RecordInvalid
-    flash[:ok] = I18n.t("tog_headlines.member.error_creating")
+    flash[:error] = I18n.t("tog_headlines.member.error_creating")
     render :action => :new
   end
   

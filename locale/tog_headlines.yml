@@ -45,6 +45,8 @@ en:
       story_created: Story has been created successfully
       story_deleted: Story has been deleted successfully
       story_updated: Story has been updated successfully
+      error_creating: There was an error creting the story    
+      not_site_story: Story not found or not a site-wide story            
       published_stories: Published stories
       draft_stories: Draft stories
       archived_stories: Archived stories
@@ -65,5 +67,6 @@ en:
       publication: Publication
       from: From
       to: To
+      not_site_story: Story not found or not site-wide story
     mailer: 
       key4: key4

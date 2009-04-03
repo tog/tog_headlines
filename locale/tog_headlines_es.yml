@@ -44,6 +44,8 @@ es:
       story_created: La noticia ha sido creada satisfactoriamente
       story_deleted: La noticia ha sido borrada satisfactoriamente
       story_updated: La noticia ha sido actualizada satisfactoriamente
+      error_creating: No se pudo crear la noticia  
+      not_site_story: Noticia que no existe o que no tiene nivel de portal    
       published_stories: Noticias publicadas
       draft_stories: Noticias en borrador
       archived_stories: Noticias archivadas
@@ -64,5 +66,6 @@ es:
       publication: Publicación
       from: Desde
       to: Hasta      
+      not_site_story: No se ha encontrado la historia o no es una historia a nivel de portal      
     mailer: 
       key4: key4      

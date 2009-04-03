@@ -1,4 +1,7 @@
 Factory.define :story do |s|
+  s.title 'Story title'
+  s.summary 'Story summary'
+  s.body 'Story.summary'
 end
 
 Factory.define :user do |u|

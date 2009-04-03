@@ -29,6 +29,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     flash[:ok] = I18n.t("tog_headlines.admin.story_created")
     redirect_to draft_admin_headlines_stories_path
     rescue ActiveRecord::RecordInvalid
+    flash[:error] = I18n.t("tog_headlines.member.error_creating")      
     render :action => :new
   end
 
@@ -36,7 +37,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.published.paginate :per_page => 20,
+    @stories = Headlines::Story.site.published.paginate :per_page => 20,
                                   :page => @page,
                                   :order => @order + " " + @asc
   end  
@@ -44,7 +45,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.draft.paginate :per_page => 20,
+    @stories = Headlines::Story.site.draft.paginate :per_page => 20,
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
@@ -52,7 +53,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.archived.paginate :per_page => 20,
+    @stories = Headlines::Story.site.archived.paginate :per_page => 20,
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
@@ -86,5 +87,9 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   
     def load_story
       @story = Headlines::Story.find(params[:id])
+      unless @story && @story.portal == true
+        flash[:error] = I18n.t("tog_headlines.admin.not_site_story")
+        redirect_to admin_headlines_stories_path
+      end
     end
 end
