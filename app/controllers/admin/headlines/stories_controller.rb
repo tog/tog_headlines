@@ -37,7 +37,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.published.paginate :per_page => 20,
+    @stories = Headlines::Story.site.published.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end  
@@ -45,7 +45,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.draft.paginate :per_page => 20,
+    @stories = Headlines::Story.site.draft.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
@@ -53,7 +53,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.archived.paginate :per_page => 20,
+    @stories = Headlines::Story.site.archived.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
