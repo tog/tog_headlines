@@ -43,6 +43,10 @@ class Story < ActiveRecord::Base
     sql = "%#{query}%"
     Story.published.find(:all, :conditions => ["title like ? or summary like ? or body like ?", sql, sql, sql])
   end
+  
+  def creation_date(format=:short)
+   I18n.l(created_at, :format => format)
+  end
 
   def draft?
     self.state == 'draft'
