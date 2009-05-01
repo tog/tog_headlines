@@ -44,7 +44,7 @@ with the following content:
 <pre>
 class InstallHeadlines < ActiveRecord::Migration
   def self.up
-    migrate_plugin "tog_headlines", 2
+    migrate_plugin "tog_headlines", 3 
   end
 
   def self.down
