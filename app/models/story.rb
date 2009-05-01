@@ -10,8 +10,8 @@ class Story < ActiveRecord::Base
   belongs_to :owner,     :class_name => "User", :foreign_key => "user_id"  
 
   named_scope :draft, :conditions => ['state = ?', 'draft']
-  named_scope :archived, :conditions => ['archive_date <= ?', Time.now]
-  named_scope :published, :conditions => ['publish_date <= ? and archive_date > ?', Time.now, Time.now]
+  named_scope :archived, :conditions => ['archive_date <= ?', Date.today]
+  named_scope :published, :conditions => ['publish_date <= ? and archive_date > ?', Date.today, Date.today]
 
   named_scope :site, :conditions => ['portal = ?', true]
 
@@ -52,10 +52,10 @@ class Story < ActiveRecord::Base
     self.state == 'draft'
   end  
   def published?
-    !self.publish_date.nil? && !self.archive_date.nil?  && self.publish_date <= Time.now && self.archive_date > Time.now
+    !self.publish_date.nil? && !self.archive_date.nil?  && self.publish_date <= Date.today && self.archive_date > Date.today
   end
   def archived?
-    !self.archive_date.nil? && self.archive_date <= Time.now
+    !self.archive_date.nil? && self.archive_date <= Date.today
   end
 
   def archivation_date(format=:short)
@@ -68,10 +68,10 @@ class Story < ActiveRecord::Base
   private 
   
     def set_archivation_date
-      self.archive_date = Time.now 
+      self.archive_date = Date.today
     end
     def set_publication_date
-      self.publish_date = Time.now unless self.publish_date
+      self.publish_date = Date.today unless self.publish_date
       self.archive_date = Date.today + 1.year unless self.archive_date
     end
     def clean_dates

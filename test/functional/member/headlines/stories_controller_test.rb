@@ -41,7 +41,7 @@ class Member::Headlines::StoriesControllerTest < ActionController::TestCase
         end
 
         should_assign_to :story, :equals => '@story'
-        should_set_the_flash_to /created/i
+        should_set_the_flash_to I18n.t("tog_headlines.member.story_created")
         should_redirect_to "draft_member_headlines_stories_path"
        
         should "create a draft story" do
@@ -65,7 +65,7 @@ class Member::Headlines::StoriesControllerTest < ActionController::TestCase
           post :create, :story => { :title => 'Results of G20 summit'} 
         end
 
-        should_set_the_flash_to /error/i
+        should_set_the_flash_to I18n.t("tog_headlines.member.error_creating")
         should_render_template :new
       end       
     end  
