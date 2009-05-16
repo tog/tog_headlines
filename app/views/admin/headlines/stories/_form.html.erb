@@ -34,13 +34,13 @@
   <caption><%= I18n.t("tog_headlines.model.summary") %></caption>
   <tbody>
     <tr>
-        <td nowrap="nowrap"><%= f.text_area( :summary, :size => '80x6', :class => "fieldbox") %></td>
+        <td nowrap="nowrap"><%= fckeditor_textarea( "story", "summary", :height => '200') %></td>
     </tr>              
 </tbody></table>
 <table class="tableE">
   <caption><%= I18n.t("tog_headlines.model.body") %></caption>
   <tbody>
     <tr>
-        <td nowrap="nowrap"><%= f.text_area(:body, :size => '80x12', :class => "fieldbox") %></td>
+        <td nowrap="nowrap"><%= fckeditor_textarea( "story", "body", :height => '450') %></td>
     </tr>              
 </tbody></table>
