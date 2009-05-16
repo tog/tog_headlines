@@ -28,7 +28,7 @@ class Story < ActiveRecord::Base
   end
 
   event :unpublish do
-    transitions :from => :published, :to => :draft 
+    transitions :from => [:published, :archived], :to => :draft 
   end
 
   event :archive do
@@ -58,10 +58,10 @@ class Story < ActiveRecord::Base
     !self.archive_date.nil? && self.archive_date <= Date.today
   end
 
-  def archivation_date(format=:short)
+  def archivation_date(format=:long)
     I18n.l(self.archive_date, :format => format)
   end  
-  def publication_date(format=:short)
+  def publication_date(format=:long)
     I18n.l(self.publish_date, :format => format)
   end
 

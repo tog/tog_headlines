@@ -37,7 +37,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.published.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
+    @stories = Story.site.published.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end  
@@ -45,7 +45,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.draft.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
+    @stories = Story.site.draft.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
@@ -53,7 +53,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
     @order = params[:order] || 'publish_date'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'    
-    @stories = Headlines::Story.site.archived.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
+    @stories = Story.site.archived.paginate :per_page => Tog::Config['plugins.tog_headlines.pagination_size'],
                                   :page => @page,
                                   :order => @order + " " + @asc
   end
@@ -72,6 +72,8 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   end
 
   def publish
+    @story.publish_date = Date.today
+    @story.archive_date = @story.publish_date + 3.year
   end
 
   def unpublish
@@ -86,7 +88,7 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   private 
   
     def load_story
-      @story = Headlines::Story.find(params[:id])
+      @story = Story.find(params[:id])
       unless @story && @story.portal == true
         flash[:error] = I18n.t("tog_headlines.admin.not_site_story")
         redirect_to admin_headlines_stories_path
