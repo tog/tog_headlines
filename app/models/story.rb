@@ -10,11 +10,11 @@ class Story < ActiveRecord::Base
   belongs_to :owner,     :class_name => "User", :foreign_key => "user_id"  
 
   named_scope :draft, :conditions => ['state = ?', 'draft']
-  named_scope :archived, :conditions => ['archive_date <= ?', Date.today]
-  named_scope :published, :conditions => ['publish_date <= ? and archive_date > ?', Date.today, Date.today]
-
+  
+  named_scope :archived, lambda { |*args| { :conditions => ['archive_date <= ?', args.first || Date.today] } }
+  named_scope :published, lambda { |*args| { :conditions => ['publish_date <= ? and archive_date > ?', args.first || Date.today, args.last || Date.today] } }
+  
   named_scope :site, :conditions => ['portal = ?', true]
-
   
   validates_presence_of :title, :body
 
