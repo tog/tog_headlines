@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class StoryTest < Test::Unit::TestCase
+class StoryTest < ActiveSupport::TestCase
   context "A Story" do
     
     setup do

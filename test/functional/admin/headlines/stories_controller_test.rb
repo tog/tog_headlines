@@ -8,7 +8,7 @@ class Admin::Headlines::StoriesControllerTest < ActionController::TestCase
       setup do
         get :new
       end
-      should_redirect_to "new_session_path"
+      should_redirect_to("login") {new_session_path}
     end
     
     context "without a regular user" do
@@ -17,7 +17,7 @@ class Admin::Headlines::StoriesControllerTest < ActionController::TestCase
         @request.session[:user_id] = @rajoy.id
         get :new
       end
-      should_redirect_to "new_session_path"
+      should_redirect_to("login") {new_session_path}
     end
   
     context "with an admin user" do
@@ -33,7 +33,7 @@ class Admin::Headlines::StoriesControllerTest < ActionController::TestCase
         end
 
         should_set_the_flash_to /not found/i
-        should_redirect_to "admin_headlines_stories_path"
+        should_redirect_to("admin stories list") {admin_headlines_stories_path}
       end
       
       context "on listng stories" do
@@ -115,9 +115,9 @@ class Admin::Headlines::StoriesControllerTest < ActionController::TestCase
                                     :body => 'I did not expect that such unreasonable and silly decisions would be taken at the G20 summit' }
         end
 
-        should_assign_to :story, :equals => '@story'
+        should_assign_to(:story) { @story }
         should_set_the_flash_to /created/i
-        should_redirect_to "draft_admin_headlines_stories_path"
+        should_redirect_to("admin draft stories list") {draft_admin_headlines_stories_path}
        
         should "create a draft story for portal publicacion" do
           @story = Story.find(assigns(:story).id)
