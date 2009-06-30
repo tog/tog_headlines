@@ -5,7 +5,7 @@ atom_feed(:url => formatted_headlines_stories_url(:atom)) do |feed|
   for story in @stories
     feed.entry(story, :url => headlines_story_url(story)) do |entry|
       entry.title(story.title)
-      entry.content((textilize(story.summary)))
+      entry.content(textilize(story.summary), :type => 'html')
 
       entry.author do |author|
         author.name(story.publisher.login)

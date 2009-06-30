@@ -1,6 +1,9 @@
 Edge
 ----
 
+* Fixed atom feed, story content supports html
+
+
 0.5.0
 ----
 
