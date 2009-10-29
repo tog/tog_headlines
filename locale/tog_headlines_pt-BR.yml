@@ -1,0 +1,71 @@
+pt-BR:
+  interface:
+    site:
+      news: "Notícias"
+    admin:
+      news: "Notícias"
+      news_items:
+        published: Publicada
+        drafts: "Rascunho"
+        archived: "Arquivada"  
+  tog_headlines:
+    plugin_name: Headlines
+    plugin_title: Notícias
+    model:
+      published: publicada
+      draft: rascunho
+      archived: arquivada
+      title: Título
+      summary: Sumário
+      body: Corpo
+      editor: Editor
+      created_at: Criada em
+      publish_date: Data de publicação
+      archive_date: Data de arquivamento
+      tags: Tags
+      tags_explanation: (separadas por vírgulas)
+      state: Estado
+      main_info: Informação principal
+      meta_info: Meta info
+      content: Conteúdo
+      states:
+        draft: rascunho
+        published: publicada
+        archived: arquivada
+    site:
+      no_news: Nenhuma notícia
+      item: Notícia
+      tags: 'Tags:'
+      no_tags_associated: Nenhuma tag associada
+    member:
+      story_created: Notícia criada com sucesso
+      error_creating: Erro ao criar notícia
+    admin:
+      story_created: Notícia criada com sucesso
+      story_deleted: Notícia apagada com sucesso
+      story_updated: Notícia atualizada com sucesso
+      error_creating: Erro ao criar notícia
+      not_site_story: Notícia não encontrada ou não é uma notícia do site
+      published_stories: Notícias publicadas
+      draft_stories: Rascunhos de notícias
+      archived_stories: Notícias arquivadas
+      create: Criar notícia
+      delete: Apagar
+      delete_confirmation: Tem certeza que deseja apagar essa notícia?
+      please_wait: Por favor aguarde...
+      no_news: Nenhuma notícia
+      edit: Editar
+      edit_story: Editar notícia
+      update: Atualizar
+      update_story: Atualizar notícia
+      create: Criar
+      create_story: Criar notícia
+      publish_dates: Publicar entre as datas
+      publish: Publicar
+      unpublish: Mover para rascunhos
+      publication: Publicação
+      from: De
+      to: Para
+      not_site_story: Notícia não encontrada ou não é uma notícia do site
+    mailer: 
+      key4: key4
