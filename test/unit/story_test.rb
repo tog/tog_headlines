@@ -78,7 +78,7 @@ class StoryTest < ActiveSupport::TestCase
       end
           
       should "be published before being archived" do
-        assert_does_not_contain @economy.aasm_events_for_current_state, 'archive'
+        assert_does_not_contain @economy.aasm_events_for_current_state.map{|e| e.to_s}, 'archive'
       end
           
       should "have archive_date setted" do
