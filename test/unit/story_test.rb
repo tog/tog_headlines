@@ -77,9 +77,8 @@ class StoryTest < ActiveSupport::TestCase
         assert_equal true, @country.archived?
       end
           
-      should "should be published before archived" do
-        @economy.archive!
-        assert_equal @economy.state, 'draft'
+      should "be published before being archived" do
+        assert_does_not_contain @economy.aasm_events_for_current_state, 'archive'
       end
           
       should "have archive_date setted" do

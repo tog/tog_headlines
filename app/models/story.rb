@@ -18,24 +18,23 @@ class Story < ActiveRecord::Base
   
   validates_presence_of :title, :body
 
-  acts_as_state_machine :initial => :draft, :column => "state" 
-  state :draft, :enter => :clean_dates
-  state :archived, :enter => :set_archivation_date
-  state :published, :enter => :set_publication_date
+  include AASM
+  aasm_column :state
+  aasm_initial_state :draft
+  aasm_state :draft, :enter => :clean_dates
+  aasm_state :archived, :enter => :set_archivation_date
+  aasm_state :published, :enter => :set_publication_date
 
-  event :publish do
+  aasm_event :publish do
     transitions :from => :draft, :to => :published
   end
-
-  event :unpublish do
+  aasm_event :unpublish do
     transitions :from => [:published, :archived], :to => :draft 
   end
-
-  event :archive do
+  aasm_event :archive do
     transitions :from => :published, :to => :archived
   end
-    
-  event :unarchive do
+  aasm_event :unarchive do
     transitions :from => :archived, :to => :draft
   end
   

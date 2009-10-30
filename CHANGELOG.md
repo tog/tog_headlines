@@ -2,7 +2,7 @@ Edge
 ----
 
 * Fixed atom feed, story content supports html
-
+* Migrated from acts_as_state_machine to AASM gem
 
 0.5.0
 ----
