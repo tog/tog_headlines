@@ -17,6 +17,8 @@ class Story < ActiveRecord::Base
   named_scope :site, :conditions => ['portal = ?', true]
   
   validates_presence_of :title, :body
+  
+  before_save :fix_state
 
   include AASM
   aasm_column :state
@@ -65,6 +67,11 @@ class Story < ActiveRecord::Base
   end
 
   private 
+  
+    def fix_state
+      self.publish! if self.state != 'published' && self.published?
+      self.archive! if self.state != 'archived' && self.archived?
+    end
   
     def set_archivation_date
       self.archive_date = Date.today

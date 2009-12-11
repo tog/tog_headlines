@@ -62,8 +62,6 @@ class Admin::Headlines::StoriesController < Admin::BaseController
   def update
     @story.editor = current_user
     if @story.update_attributes(params[:story])
-      @story.publish! if @story.published?
-      @story.archive! if @story.archived?
       flash[:ok] = I18n.t("tog_headlines.admin.story_updated")
       redirect_to admin_headlines_story_path(@story)
     else
