@@ -18,7 +18,7 @@ Resources
 Install
 -------
 
-rake rails:template LOCATION=http://tr.im/tog_headlines_0_5_0
+rake rails:template LOCATION=http://tr.im/tog_headlines_current
 
 
 More
